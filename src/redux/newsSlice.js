@@ -31,5 +31,5 @@ export const newsSlice = createSlice({
 });
 
 export const { loadNews } = newsSlice.actions;
-export const selectNews = (state) => state.news.items;
+export const selectNews = (state) => state.news;
 export default newsSlice.reducer;
