@@ -1,12 +1,16 @@
+import { Link } from "react-router-dom";
+
 import Comments from "../components/comments/Comments";
 
 function News() {
 	return (
 		<div className="px-5 bg-light">
-			<button className="btn btn-outline-dark mt-4">
-				<i className="fa-solid fa-arrow-left" />
-				<span className="ms-2">Back</span>
-			</button>
+			<Link to="/">
+				<button className="btn btn-outline-dark mt-4">
+					<i className="fa-solid fa-arrow-left" />
+					<span className="ms-2">Back</span>
+				</button>
+			</Link>
 			<div className="p-3 my-4 border-left border-warning wrapper bg-white">
 				<h3 className="m-0">
 					The Galaxy S23 will have larger bezels, and Samsung

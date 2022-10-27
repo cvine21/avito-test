@@ -4,19 +4,19 @@ const urlBase = "https://hacker-news.firebaseio.com/v0/";
 const urlNewStories = `${urlBase}newstories.json`;
 const urlStory = `${urlBase}item/`;
 
-const getResource = async (url) => {
-	try {
-		const res = await fetch(url);
+// const getResource = async (url) => {
+// 	try {
+// 		const res = await fetch(url);
 
-		if (!res.ok) {
-			throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-		}
+// 		if (!res.ok) {
+// 			throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+// 		}
 
-		return await res.json();
-	} catch (e) {
-		console.error(e.message);
-	}
-};
+// 		return await res.json();
+// 	} catch (e) {
+// 		console.error(e.message);
+// 	}
+// };
 
 export const getStoryById = async (id) => {
 	const res = await await axios
