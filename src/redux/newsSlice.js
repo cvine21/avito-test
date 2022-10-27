@@ -8,7 +8,7 @@ const initialState = {
 
 export const fetchNews = createAsyncThunk("news/fetchNews", async () => {
 	const res = await getNewStories();
-
+	console.log("fetching data...");
 	return res;
 });
 
