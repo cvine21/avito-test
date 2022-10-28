@@ -2,15 +2,22 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchNews, selectNews } from "../redux/newsSlice";
-import Story from "../components/news/Story";
+import Brief from "../components/news/Brief";
 
 import "../index.scss";
+import { Link } from "react-router-dom";
 
 function Home() {
 	const dispatch = useDispatch();
 	const news = useSelector(selectNews);
 	const newsList = news.items.map((item, i) => (
-		<Story item={item} index={i} key={item.id} />
+		<Link
+			to={`/${item.id}`}
+			style={{ textDecoration: "none", color: "#000" }}
+			key={item.id}
+		>
+			<Brief item={item} index={i} />
+		</Link>
 	));
 
 	useEffect(() => {

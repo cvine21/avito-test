@@ -8,16 +8,14 @@ const initialState = {
 
 export const fetchNews = createAsyncThunk("news/fetchNews", async () => {
 	const res = await getNewStories();
-	console.log("fetching data...");
+	console.log("fetching news...");
 	return res;
 });
 
 export const newsSlice = createSlice({
 	name: "news",
 	initialState,
-	reducers: {
-		loadNews: (state, action) => action.payload,
-	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchNews.pending, (state) => {
@@ -30,6 +28,5 @@ export const newsSlice = createSlice({
 	},
 });
 
-export const { loadNews } = newsSlice.actions;
 export const selectNews = (state) => state.news;
 export default newsSlice.reducer;

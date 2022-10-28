@@ -2,48 +2,27 @@ import axios from "axios";
 
 const urlBase = "https://hacker-news.firebaseio.com/v0/";
 const urlNewStories = `${urlBase}newstories.json`;
-const urlStory = `${urlBase}item/`;
+const urlItem = `${urlBase}item/`;
 
-// const getResource = async (url) => {
-// 	try {
-// 		const res = await fetch(url);
+const getResource = async (url) => {
+	const res = await axios(url)
+		.then((response) => response.data)
+		.catch((error) => console.log(error));
+	return await res;
+};
 
-// 		if (!res.ok) {
-// 			throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-// 		}
+export const getItems = async (ids) => {
+	const res = await Promise.all(
+		ids.map(async (id) => await getResource(`${urlItem}${id}.json`))
+	);
 
-// 		return await res.json();
-// 	} catch (e) {
-// 		console.error(e.message);
-// 	}
-// };
-
-export const getStoryById = async (id) => {
-	const res = await await axios
-		.get(`${urlStory}${id}.json`)
-		.then((res) => res.data);
-
-	return res;
+	return res.filter((i) => i !== null);
 };
 
 export const getNewStories = async () => {
-	const ids = await axios
-		.get(urlNewStories)
-		.then((res) => res.data.slice(0, 100));
+	const ids = await getResource(urlNewStories).then((data) =>
+		data.slice(0, 100)
+	);
 
-	const stories = await Promise.all(ids.map((id) => getStoryById(id)));
-
-	return stories;
+	return await getItems(ids);
 };
-
-// _transformCharacter = (char) => {
-// 	return {
-// 		id: char.id,
-// 		name: char.name,
-// 		description: char.description,
-// 		thumbnail: char.thumbnail.path + "." + char.thumbnail.extension,
-// 		homepage: char.urls[0].url,
-// 		wiki: char.urls[1].url,
-// 		comics: char.comics.items,
-// 	};
-// };
