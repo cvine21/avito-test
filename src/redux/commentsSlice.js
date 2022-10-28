@@ -8,8 +8,8 @@ const initialState = {
 
 export const fetchComments = createAsyncThunk(
 	"news/fetchComments",
-	async () => {
-		const res = await getItems();
+	async (comments = initialState.items) => {
+		const res = await getItems(comments);
 		console.log("fetching comments...");
 		return res;
 	}

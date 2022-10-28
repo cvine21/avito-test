@@ -1,13 +1,6 @@
-import { useSelector } from "react-redux";
-import { useParams } from "react-router";
-import { selectNews } from "../../redux/newsSlice";
-
 import dateTime from "../../utils/dateTime";
 
-function Story() {
-	const { id } = useParams();
-	const news = useSelector(selectNews);
-	const story = news.items.find((item) => item.id === +id);
+function Story({ story }) {
 	const { by, title, time: millisec, url } = story;
 	const { time, day } = dateTime(millisec);
 
