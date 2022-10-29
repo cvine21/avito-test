@@ -14,10 +14,6 @@ function Home() {
 	));
 
 	useEffect(() => {
-		dispatch(fetchNews());
-	}, [dispatch]);
-
-	useEffect(() => {
 		let interval = setInterval(() => dispatch(fetchNews()), 60000);
 		return () => clearInterval(interval);
 	}, [dispatch]);

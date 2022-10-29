@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
 
 import DateTime from "../date-time/DateTime";
-import TimeAgo from "javascript-time-ago";
 
 function Brief({
 	item: { id, by, title, score, time: millisec, descendants },
 	index,
 }) {
-	const ago = new TimeAgo().format(millisec * 1000);
+	TimeAgo.addLocale(en);
+	const ago = new TimeAgo("en-US").format(millisec * 1000);
 
 	return (
 		<Link to={`/${id}`} style={{ textDecoration: "none", color: "black" }}>
