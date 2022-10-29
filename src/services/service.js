@@ -8,13 +8,18 @@ const getResource = async (url) => {
 	const res = await axios(url)
 		.then((response) => response.data)
 		.catch((error) => console.log(error));
+
 	return await res;
 };
 
+export const getItem = async (id) => {
+	const res = await getResource(`${urlItem}${id}.json`);
+
+	return res;
+};
+
 export const getItems = async (ids) => {
-	const res = await Promise.all(
-		ids.map(async (id) => await getResource(`${urlItem}${id}.json`))
-	);
+	const res = await Promise.all(ids.map(async (id) => await getItem(id)));
 
 	return res.filter((i) => i !== null);
 };

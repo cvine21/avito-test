@@ -1,25 +1,43 @@
-import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { selectNews } from "../redux/newsSlice";
 import Comments from "../components/comments/Comments";
-import Story from "../components/news/Story";
+import Title from "../components/news/Title";
+import { fetchStory, selectStory } from "../redux/storySlice";
 
 function News() {
 	const { id } = useParams();
-	const news = useSelector(selectNews);
-	const story = news.items.find((item) => item.id === Number(id));
+	const { status } = useSelector(selectStory);
+	const dispatch = useDispatch();
+
+	const onRefresh = useCallback(async () => {
+		dispatch(fetchStory(id));
+	}, [dispatch, id]);
+
+	useEffect(() => onRefresh, [onRefresh]);
 
 	return (
-		<div className="px-5 bg-light">
-			<Link to="/">
-				<button className="btn btn-outline-dark mt-4">
-					<i className="fa-solid fa-arrow-left" />
-					<span className="ms-2">Back</span>
+		<div className="px-5">
+			<div className="d-flex gap-2 mt-4">
+				<Link to="/">
+					<button className="btn btn-outline-dark">
+						<i className="fa-solid fa-arrow-left" />
+						<span className="ms-2">Back</span>
+					</button>
+				</Link>
+				<button className="btn btn-outline-dark" onClick={onRefresh}>
+					<i className="fa-solid fa-rotate-right"></i>
 				</button>
-			</Link>
-			<Story story={story} />
-			<Comments story={story} />
+			</div>
+			{status === "loading" ? (
+				<span className="loader"></span>
+			) : (
+				<>
+					<Title />
+					<Comments />
+				</>
+			)}
 		</div>
 	);
 }

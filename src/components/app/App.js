@@ -6,7 +6,7 @@ import News from "../../pages/News";
 
 function App() {
 	return (
-		<div className="wrapper pb-2">
+		<div className="wrapper pb-4">
 			<Router>
 				<Navbar />
 				<Switch>
