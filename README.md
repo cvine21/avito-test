@@ -11,7 +11,7 @@ A react application that uses the official <a href="https://github.com/HackerNew
 ## Setup
 1. Clone this repo and go to the cloned folder.
 ``` sh
-$> https://github.com/cvine21/avito-test.git && cd avito-test
+$> https://github.com/cvine21/react-hacker-news.git && cd react-hacker-news
 ```
 2. Install all the dependencies
 ``` sh
