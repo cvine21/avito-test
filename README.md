@@ -6,6 +6,7 @@ A react application that uses the official <a href="https://github.com/HackerNew
 - Redux
 - React Router
 - Axios
+- Bootstrap
 - SCSS
 
 ## Setup
