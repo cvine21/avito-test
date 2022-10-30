@@ -1,4 +1,4 @@
-# JavaScript_Тестовое_Задание_Рахимов_Рафаэль
+# React Hacker News
 A react application that uses the official <a href="https://github.com/HackerNews/API" target="_blank">Hacker News API</a> to show the newest 100 news of the site.
 
 ## Stack
