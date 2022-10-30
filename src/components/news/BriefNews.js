@@ -4,12 +4,9 @@ import en from "javascript-time-ago/locale/en";
 
 import DateTime from "../date-time/DateTime";
 
-function Brief({
-	item: { id, by, title, score, time: millisec, descendants },
-	index,
-}) {
+function BriefNews({ item: { id, by, title, score, time, kids }, index }) {
 	TimeAgo.addLocale(en);
-	const ago = new TimeAgo("en-US").format(millisec * 1000);
+	const ago = new TimeAgo("en-US").format(time * 1000);
 
 	return (
 		<Link to={`/${id}`} style={{ textDecoration: "none", color: "black" }}>
@@ -19,9 +16,11 @@ function Brief({
 					<h5 className="m-0">{title}</h5>
 					<div className="fs-6 d-flex mt-1 justify-content-between text-secondary">
 						<p className="m-0">
-							{`${score} points by ${by} ${ago} | ${descendants} comments`}
+							{`${score} points by ${by} ${ago} | ${
+								kids?.length || 0
+							} comments`}
 						</p>
-						<DateTime millisec={millisec} />
+						<DateTime millisec={time} />
 					</div>
 				</div>
 			</div>
@@ -29,4 +28,4 @@ function Brief({
 	);
 }
 
-export default Brief;
+export default BriefNews;

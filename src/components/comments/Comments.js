@@ -1,22 +1,23 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchComments, selectComments } from "../../redux/commentsSlice";
 import { selectStory } from "../../redux/storySlice";
+import ErrorMessage from "../error-message/ErrorMessage";
 import Comment from "./Comment";
 
 function Comments() {
 	const {
-		item: { kids, descendants },
+		item: { kids },
 	} = useSelector(selectStory);
-	const { items, status } = useSelector(selectComments);
 	const dispatch = useDispatch();
+	const { items, status } = useSelector(selectComments);
 
-	useEffect(() => {
+	useMemo(() => {
 		dispatch(fetchComments(kids));
 	}, [dispatch, kids]);
 
-	const content = items.length ? (
+	const content = kids ? (
 		items.map((item) => <Comment item={item} key={item.id} />)
 	) : (
 		<span className="fs-6">No comments</span>
@@ -30,6 +31,8 @@ function Comments() {
 			<div className="d-flex flex-column w-100 mt-3 p-3 wrapper bg-white">
 				{status === "loading" ? (
 					<span className="loader"></span>
+				) : status === "failed" ? (
+					<ErrorMessage />
 				) : (
 					content
 				)}

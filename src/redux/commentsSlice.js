@@ -7,10 +7,10 @@ const initialState = {
 };
 
 export const fetchComments = createAsyncThunk(
-	"news/fetchComments",
+	"comments/fetchComments",
 	async (comments = initialState.items) => {
-		const res = await getItems(comments);
 		console.log("fetching comments...");
+		const res = await getItems(comments);
 		return res;
 	}
 );
@@ -27,6 +27,9 @@ export const commentsSlice = createSlice({
 			.addCase(fetchComments.fulfilled, (state, action) => {
 				state.status = "idle";
 				state.items = action.payload;
+			})
+			.addCase(fetchComments.rejected, (state) => {
+				state.status = "failed";
 			});
 	},
 });

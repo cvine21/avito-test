@@ -7,9 +7,9 @@ const initialState = {
 };
 
 export const fetchStory = createAsyncThunk("story/fetchStory", async (id) => {
-	const res = await getItem(id);
 	console.log("fetching story...");
-	return res;
+	const res = await getItem(id);
+	return await res;
 });
 
 export const storySlice = createSlice({
@@ -24,6 +24,9 @@ export const storySlice = createSlice({
 			.addCase(fetchStory.fulfilled, (state, action) => {
 				state.status = "idle";
 				state.item = action.payload;
+			})
+			.addCase(fetchStory.rejected, (state) => {
+				state.status = "failed";
 			});
 	},
 });

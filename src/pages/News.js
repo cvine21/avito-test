@@ -3,15 +3,16 @@ import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Comments from "../components/comments/Comments";
-import Title from "../components/news/Title";
 import { fetchStory, selectStory } from "../redux/storySlice";
+import DetailedNews from "../components/news/DetailedNews";
+import ErrorMessage from "../components/error-message/ErrorMessage";
 
 function News() {
 	const { id } = useParams();
 	const { status } = useSelector(selectStory);
 	const dispatch = useDispatch();
 
-	const onRefresh = useCallback(async () => {
+	const onRefresh = useCallback(() => {
 		dispatch(fetchStory(id));
 	}, [dispatch, id]);
 
@@ -32,9 +33,11 @@ function News() {
 			</div>
 			{status === "loading" ? (
 				<span className="loader"></span>
+			) : status === "failed" ? (
+				<ErrorMessage />
 			) : (
 				<>
-					<Title />
+					<DetailedNews />
 					<Comments />
 				</>
 			)}

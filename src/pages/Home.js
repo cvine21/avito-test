@@ -2,15 +2,16 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchNews, selectNews } from "../redux/newsSlice";
-import Brief from "../components/news/Brief";
+import BriefNews from "../components/news/BriefNews";
 
 import "../index.scss";
+import ErrorMessage from "../components/error-message/ErrorMessage";
 
 function Home() {
+	const { items, status } = useSelector(selectNews);
 	const dispatch = useDispatch();
-	const news = useSelector(selectNews);
-	const newsList = news.items.map((item, i) => (
-		<Brief item={item} index={i} key={item.id} />
+	const newsList = items.map((item, i) => (
+		<BriefNews item={item} index={i} key={item.id} />
 	));
 
 	useEffect(() => {
@@ -30,8 +31,10 @@ function Home() {
 			>
 				<i className="fa-solid fa-rotate-right" />
 			</button>
-			{news.status === "loading" ? (
+			{status === "loading" ? (
 				<span className="loader"></span>
+			) : status === "failed" ? (
+				<ErrorMessage />
 			) : (
 				newsList
 			)}

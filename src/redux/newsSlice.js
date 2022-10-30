@@ -8,7 +8,6 @@ const initialState = {
 
 export const fetchNews = createAsyncThunk("news/fetchNews", async () => {
 	const res = await getNewStories();
-	console.log("fetching news...");
 	return res;
 });
 
@@ -24,6 +23,9 @@ export const newsSlice = createSlice({
 			.addCase(fetchNews.fulfilled, (state, action) => {
 				state.status = "idle";
 				state.items = action.payload;
+			})
+			.addCase(fetchNews.rejected, (state) => {
+				state.status = "failed";
 			});
 	},
 });
