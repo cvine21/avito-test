@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
 
 import { getItems } from "../../services/service";
 import Reply from "./Reply";
 
 function Comment({ item: { by, text, time, kids, deleted, dead } }) {
 	const [replies, setReplies] = useState([]);
+	TimeAgo.addLocale(en);
 	const ago = new TimeAgo().format(time * 1000);
 
 	useEffect(
@@ -27,8 +29,8 @@ function Comment({ item: { by, text, time, kids, deleted, dead } }) {
 	return (
 		!dead &&
 		!deleted && (
-			<div className="fs-6 mt-3 pb-4 border-bottom">
-				<div className="d-flex align-items-center mb-3 gap-2">
+			<div className="fs-6 my-2">
+				<div className="d-flex align-items-center mb-2 gap-2">
 					<h6 className="fw-bold m-0">
 						<i className="fas fa-user-alt me-2" />
 						{by}
@@ -36,10 +38,12 @@ function Comment({ item: { by, text, time, kids, deleted, dead } }) {
 					<div className="d-flex text-secondary">{ago}</div>
 				</div>
 				<div className="ps-5">
-					<p>{text}</p>
+					<p className="mb-2">{text}</p>
 					{kids && (
-						<details className="mt-2">
-							<summary>{kids.length} Replies</summary>
+						<details>
+							<summary className="px-3 py-1 rounded-5 text-primary">
+								{kids.length} Replies
+							</summary>
 							{content}
 						</details>
 					)}

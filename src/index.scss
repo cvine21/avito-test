@@ -15,8 +15,19 @@ body {
 	margin: 0 auto;
 }
 
+summary {
+	transform: translateX(-15px);
+
+	&:hover {
+		background-color: #def1ff;
+		width: fit-content;
+	}
+	&:active {
+		background-color: #c7d8e5;
+	}
+}
+
 button {
-	// background-color: #ff6600 !important;
 	transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 
 	&:active {

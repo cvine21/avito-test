@@ -25,7 +25,7 @@ function Home() {
 	return (
 		<>
 			<button
-				className="btn btn-outline-dark ms-3 mt-2"
+				className="btn btn-light ms-3 mt-2 border"
 				onClick={onRefresh}
 			>
 				<i className="fa-solid fa-rotate-right" />
