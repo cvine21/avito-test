@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/react-hacker-news/static/css/main.7b3380fb.css",
+    "main.js": "/react-hacker-news/static/js/main.44355daf.js",
+    "static/media/error.gif": "/react-hacker-news/static/media/error.42292aa12b6bc303ce99.gif",
+    "index.html": "/react-hacker-news/index.html",
+    "main.7b3380fb.css.map": "/react-hacker-news/static/css/main.7b3380fb.css.map",
+    "main.44355daf.js.map": "/react-hacker-news/static/js/main.44355daf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7b3380fb.css",
+    "static/js/main.44355daf.js"
+  ]
+}
