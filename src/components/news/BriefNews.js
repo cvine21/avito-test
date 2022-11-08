@@ -9,7 +9,7 @@ function BriefNews({ item: { id, by, title, score, time, kids }, index }) {
 	const ago = new TimeAgo("en-US").format(time * 1000);
 
 	return (
-		<text-reset
+		<Link
 			to={`/react-hacker-news/${id}`}
 			className="text-decoration-none text-reset"
 		>
@@ -27,7 +27,7 @@ function BriefNews({ item: { id, by, title, score, time, kids }, index }) {
 					</div>
 				</div>
 			</div>
-		</text-reset>
+		</Link>
 	);
 }
 
