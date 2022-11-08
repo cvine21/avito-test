@@ -21,7 +21,7 @@ function News() {
 	return (
 		<div className="px-5">
 			<div className="d-flex gap-2 mt-4">
-				<Link to="/">
+				<Link to="/react-hacker-news">
 					<button className="btn btn-light">
 						<i className="fa-solid fa-arrow-left" />
 						<span className="ms-2">Back</span>

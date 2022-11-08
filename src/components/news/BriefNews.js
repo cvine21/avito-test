@@ -9,7 +9,10 @@ function BriefNews({ item: { id, by, title, score, time, kids }, index }) {
 	const ago = new TimeAgo("en-US").format(time * 1000);
 
 	return (
-		<Link to={`/${id}`} style={{ textDecoration: "none", color: "black" }}>
+		<text-reset
+			to={`/react-hacker-news/${id}`}
+			className="text-decoration-none text-reset"
+		>
 			<div className="mx-3 my-2 p-3 d-flex align-items-center justify-content-start border wrapper brief">
 				<span className="fs-5 me-3">{index + 1}.</span>
 				<div className="w-100">
@@ -24,7 +27,7 @@ function BriefNews({ item: { id, by, title, score, time, kids }, index }) {
 					</div>
 				</div>
 			</div>
-		</Link>
+		</text-reset>
 	);
 }
 
