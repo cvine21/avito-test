@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchComments, selectComments } from "../../redux/commentsSlice";
@@ -13,7 +13,9 @@ function Comments() {
 	const dispatch = useDispatch();
 	const { items, status } = useSelector(selectComments);
 
-	useMemo(() => {
+	useEffect(() => {
+		if (!kids) return;
+
 		dispatch(fetchComments(kids));
 	}, [dispatch, kids]);
 
