@@ -1,33 +1,35 @@
 import { useEffect, useState } from "react";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
 import parse from "html-react-parser";
 
 import { getItems } from "../../services/service";
 import Reply from "./Reply";
+import { timeAgo } from "../../utils/timeAgo";
 
-function Comment({ item: { by, text, time, kids, deleted, dead } }) {
+function Comment({ item }) {
+	const { by, text, time, kids, deleted, dead } = item;
 	const [replies, setReplies] = useState([]);
+	const ago = timeAgo(time);
 	let repliesCount = 0;
-	TimeAgo.addLocale(en);
-	const ago = new TimeAgo().format(time * 1000);
 
-	useEffect(
-		() => async () => {
+	useEffect(() => {
+		async function fetchReplies() {
 			if (!kids) return;
 
+			console.log("fetchig replies...");
 			const res = await getItems(kids);
 			setReplies(res);
-		},
-		[kids]
-	);
+		}
+		fetchReplies();
+	}, [kids]);
 
-	const content =
-		replies.length &&
+	const content = kids ? (
 		replies.map((item) => {
 			if (!item.dead && !item.deleted) ++repliesCount;
 			return <Reply item={item} key={item.id} />;
-		});
+		})
+	) : (
+		<></>
+	);
 
 	const possibleReplies = kids && (
 		<details>

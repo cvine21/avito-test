@@ -1,10 +1,10 @@
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
 import parse from "html-react-parser";
 
-function Reply({ item: { by, text, time, dead, deleted } }) {
-	TimeAgo.addLocale(en);
-	const ago = new TimeAgo().format(time * 1000);
+import { timeAgo } from "../../utils/timeAgo";
+
+function Reply({ item }) {
+	const { by, text, time, dead, deleted } = item;
+	const ago = timeAgo(time);
 
 	return (
 		!dead &&

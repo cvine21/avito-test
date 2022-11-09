@@ -18,7 +18,7 @@ export const getItem = async (id) => {
 	return res;
 };
 
-export const getItems = async (ids = []) => {
+export const getItems = async (ids) => {
 	const res = await Promise.all(ids.map(async (id) => await getItem(id)));
 
 	return res.filter((i) => i !== null);

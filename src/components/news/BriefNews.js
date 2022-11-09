@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
 
 import DateTime from "../date-time/DateTime";
+import { timeAgo } from "../../utils/timeAgo";
 
-function BriefNews({ item: { id, by, title, score, time, kids }, index }) {
-	TimeAgo.addLocale(en);
-	const ago = new TimeAgo("en-US").format(time * 1000);
+function BriefNews({ item, index }) {
+	const { id, by, title, score, time, kids, descendants } = item;
+	const ago = timeAgo(time);
 
 	return (
 		<Link
@@ -19,9 +18,7 @@ function BriefNews({ item: { id, by, title, score, time, kids }, index }) {
 					<h5 className="m-0">{title}</h5>
 					<div className="fs-6 d-flex mt-1 justify-content-between text-secondary">
 						<p className="m-0">
-							{`${score} points by ${by} ${ago} | ${
-								kids?.length || 0
-							} comments`}
+							{`${score} points by ${by} ${ago} | ${descendants} comments`}
 						</p>
 						<DateTime millisec={time} />
 					</div>

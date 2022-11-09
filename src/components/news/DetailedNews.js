@@ -4,9 +4,8 @@ import DateTime from "../date-time/DateTime";
 import parse from "html-react-parser";
 
 function DetailedNews() {
-	const {
-		item: { by, title, text, time, url },
-	} = useSelector(selectStory);
+	const { item } = useSelector(selectStory);
+	const { by, title, text, time, url } = item;
 
 	const possibleText = text && <div className="pt-3 fs-6">{parse(text)}</div>;
 	const possibleRef = url && (
