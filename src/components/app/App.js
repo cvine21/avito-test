@@ -20,7 +20,7 @@ function App() {
 				<Navbar />
 				<Switch>
 					<Route exact path="/react-hacker-news" component={Home} />
-					<Route path="/:id" component={News} />
+					<Route path="/react-hacker-news/:id" component={News} />
 				</Switch>
 			</Router>
 		</div>
