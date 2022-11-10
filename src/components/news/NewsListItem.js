@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import DateTime from "../date-time/DateTime";
 import { timeAgo } from "../../utils/timeAgo";
 
-function BriefNews({ item, index }) {
+function NewsListItem({ item, index }) {
 	const { id, by, title, score, time, descendants } = item;
 	const ago = timeAgo(time);
 
@@ -29,4 +29,4 @@ function BriefNews({ item, index }) {
 	);
 }
 
-export default BriefNews;
+export default NewsListItem;

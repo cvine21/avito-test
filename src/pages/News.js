@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Comments from "../components/comments/Comments";
 import { fetchStory, selectStory } from "../redux/storySlice";
-import DetailedNews from "../components/news/DetailedNews";
+import Topic from "../components/news/Topic";
 import ErrorMessage from "../components/error-message/ErrorMessage";
+import Button from "../components/button/Button";
 
 function News() {
 	const { id } = useParams();
@@ -18,29 +19,32 @@ function News() {
 
 	useEffect(() => onRefresh(), [onRefresh]);
 
+	const content =
+		status === "loading" ? (
+			<span className="loader"></span>
+		) : status === "failed" ? (
+			<ErrorMessage />
+		) : (
+			<>
+				<Topic />
+				<Comments />
+			</>
+		);
+
 	return (
 		<div className="px-5">
 			<div className="d-flex gap-2 mt-4">
 				<Link to="/react-hacker-news">
-					<button className="btn btn-light">
+					<Button>
 						<i className="fa-solid fa-arrow-left" />
 						<span className="ms-2">Back</span>
-					</button>
+					</Button>
 				</Link>
-				<button className="btn btn-light" onClick={onRefresh}>
+				<Button onClick={onRefresh}>
 					<i className="fa-solid fa-rotate-right"></i>
-				</button>
+				</Button>
 			</div>
-			{status === "loading" ? (
-				<span className="loader"></span>
-			) : status === "failed" ? (
-				<ErrorMessage />
-			) : (
-				<>
-					<DetailedNews />
-					<Comments />
-				</>
-			)}
+			{content}
 		</div>
 	);
 }
