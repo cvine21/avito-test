@@ -2,41 +2,34 @@ import { useEffect, useState } from "react";
 import parse from "html-react-parser";
 
 import { getItems } from "../../services/service";
-import Reply from "./Reply";
 import { timeAgo } from "../../utils/timeAgo";
 
 function Comment({ item }) {
-	const { by, text, time, kids, deleted, dead } = item;
 	const [replies, setReplies] = useState([]);
+
+	const { by, text, time, kids, deleted, dead } = item;
 	const ago = timeAgo(time);
-	let repliesCount = 0;
 
 	useEffect(() => {
 		async function fetchReplies() {
 			if (!kids) return;
 
-			console.log("fetchig replies...");
+			console.log("fetching replies...");
 			const res = await getItems(kids);
 			setReplies(res);
 		}
 		fetchReplies();
 	}, [kids]);
 
-	const content = kids ? (
-		replies.map((item) => {
-			if (!item.dead && !item.deleted) ++repliesCount;
-			return <Reply item={item} key={item.id} />;
-		})
-	) : (
-		<></>
-	);
+	const possibleReplies =
+		kids && replies.map((item) => <Comment item={item} key={item.id} />);
 
-	const possibleReplies = kids && (
+	const content = kids && (
 		<details>
 			<summary className="px-3 py-1 rounded-5 text-primary">
-				{repliesCount} Replies
+				{kids.length} Replies
 			</summary>
-			{content}
+			{possibleReplies}
 		</details>
 	);
 
@@ -53,7 +46,7 @@ function Comment({ item }) {
 				</div>
 				<div className="ps-5">
 					<div className="mb-2">{parse(text)}</div>
-					{possibleReplies}
+					{content}
 				</div>
 			</div>
 		)

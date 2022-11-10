@@ -4,7 +4,7 @@ import DateTime from "../date-time/DateTime";
 import { timeAgo } from "../../utils/timeAgo";
 
 function BriefNews({ item, index }) {
-	const { id, by, title, score, time, kids, descendants } = item;
+	const { id, by, title, score, time, descendants } = item;
 	const ago = timeAgo(time);
 
 	return (
@@ -18,7 +18,8 @@ function BriefNews({ item, index }) {
 					<h5 className="m-0">{title}</h5>
 					<div className="fs-6 d-flex mt-1 justify-content-between text-secondary">
 						<p className="m-0">
-							{`${score} points by ${by} ${ago} | ${descendants} comments`}
+							{`${score} points by ${by} ${ago}`}
+							{descendants ? ` | ${descendants} comments` : ""}
 						</p>
 						<DateTime millisec={time} />
 					</div>
