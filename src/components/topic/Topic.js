@@ -7,8 +7,8 @@ function Topic() {
 	const { item } = useSelector(selectStory);
 	const { by, title, text, time, url } = item;
 
-	const possibleText = text && <div className="pt-3 fs-6">{parse(text)}</div>;
-	const possibleUrl = url && (
+	const topicText = text && <div className="pt-3 fs-6">{parse(text)}</div>;
+	const topicUrl = url && (
 		<a className="fs-5" href={url}>
 			<i className="fa-solid fa-newspaper"></i>
 			<span className="ms-2">Read article</span>
@@ -16,12 +16,12 @@ function Topic() {
 	);
 
 	return (
-		<div className="p-3 my-4 border-left border-warning wrapper bg-white">
+		<div className="my-4 wrapper">
 			<h3 className="m-0">{title}</h3>
-			{possibleText}
+			{topicText}
 			<div className="mt-3 fs-6 d-flex justify-content-between text-secondary">
-				{possibleUrl}
-				<div className="d-flex">
+				{topicUrl}
+				<div className="d-flex align-items-center">
 					<div className="me-4">
 						<i className="fas fa-user-alt" />
 						<span className="ms-2">{by}</span>

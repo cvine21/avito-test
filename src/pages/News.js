@@ -2,11 +2,11 @@ import { Link, useParams } from "react-router-dom";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Comments from "../components/comments/Comments";
 import { fetchStory, selectStory } from "../redux/storySlice";
-import Topic from "../components/news/Topic";
 import ErrorMessage from "../components/error-message/ErrorMessage";
+import Comments from "../components/comments/Comments";
 import Button from "../components/button/Button";
+import Topic from "../components/topic/Topic";
 
 function News() {
 	const { id } = useParams();

@@ -12,7 +12,7 @@ function NewsListItem({ item, index }) {
 			to={`/react-hacker-news/${id}`}
 			className="text-decoration-none text-reset"
 		>
-			<div className="mx-3 my-2 p-3 d-flex align-items-center justify-content-start border wrapper brief">
+			<div className="mx-3 my-2 d-flex align-items-center justify-content-start border wrapper brief">
 				<span className="fs-5 me-3">{index + 1}.</span>
 				<div className="w-100">
 					<h5 className="m-0">{title}</h5>

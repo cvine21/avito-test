@@ -12,14 +12,14 @@ function Home() {
 	const { items, status } = useSelector(selectNews);
 	const dispatch = useDispatch();
 
-	const newsList = items.map((item, i) => (
-		<NewsListItem item={item} index={i} key={item.id} />
-	));
-
 	useEffect(() => {
 		let interval = setInterval(() => dispatch(fetchNews()), 60000);
 		return () => clearInterval(interval);
 	}, [dispatch]);
+
+	const newsList = items.map((item, i) => (
+		<NewsListItem item={item} index={i} key={item.id} />
+	));
 
 	const onRefresh = () => {
 		dispatch(fetchNews());

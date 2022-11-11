@@ -4,12 +4,12 @@ function DateTime({ millisec }) {
 	const time = date.toLocaleTimeString("en-US");
 
 	return (
-		<div className="d-flex text-secondary">
+		<div className="d-flex text-secondary gap-4">
 			<div>
 				<i className="fa fa-clock-o"></i>
 				<span className="ms-2">{time}</span>
 			</div>
-			<div className="ms-4">
+			<div>
 				<i className="fa fa-calendar-o"></i>
 				<span className="ms-2">{day}</span>
 			</div>
