@@ -16,7 +16,7 @@ function Topic() {
 	);
 
 	return (
-		<div className="my-4 wrapper">
+		<div className="my-4 wrapper p-3">
 			<h3 className="m-0">{title}</h3>
 			{topicText}
 			<div className="mt-3 fs-6 d-flex justify-content-between text-secondary">

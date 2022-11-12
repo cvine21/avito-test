@@ -1,6 +1,6 @@
 function DateTime({ millisec }) {
 	const date = new Date(millisec * 1000);
-	const day = date.toLocaleDateString();
+	const day = date.toLocaleDateString().replace(/\//g, ".");
 	const time = date.toLocaleTimeString("en-US");
 
 	return (

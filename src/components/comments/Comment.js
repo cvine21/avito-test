@@ -42,7 +42,7 @@ function Comment({ item }) {
 						<i className="fas fa-user-alt me-2" />
 						{by}
 					</h6>
-					<div className="d-flex text-secondary">{ago}</div>
+					<span className="text-secondary">{ago}</span>
 				</div>
 				<div className="ps-5">
 					<div className="mb-2">{parse(text)}</div>

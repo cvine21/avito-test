@@ -2,9 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchNews, selectNews } from "../redux/newsSlice";
-import NewsListItem from "../components/news/NewsListItem";
-
-import "../index.scss";
+import NewsListItem from "../components/news-list-item/NewsListItem";
 import ErrorMessage from "../components/error-message/ErrorMessage";
 import Button from "../components/button/Button";
 

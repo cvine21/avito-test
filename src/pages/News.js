@@ -37,11 +37,10 @@ function News() {
 				<Link to="/react-hacker-news">
 					<Button>
 						<i className="fa-solid fa-arrow-left" />
-						<span className="ms-2">Back</span>
 					</Button>
 				</Link>
 				<Button onClick={onRefresh}>
-					<i className="fa-solid fa-rotate-right"></i>
+					<i className="fa-solid fa-rotate-right" />
 				</Button>
 			</div>
 			{content}

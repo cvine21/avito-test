@@ -36,7 +36,7 @@ function Comments() {
 	return (
 		<>
 			<h3 className="mt-5 pt-5 ms-2 mb-0">Comments: {descendants}</h3>
-			<div className="d-flex flex-column w-100 mt-3 wrapper">
+			<div className="d-flex flex-column w-100 mt-3 wrapper p-3">
 				{content}
 			</div>
 		</>
